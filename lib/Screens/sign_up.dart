@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_assignment/Components/constants.dart';
-import 'package:quiz_app_assignment/Functions/authFunctions.dart';
-import 'package:quiz_app_assignment/Screens/sign_in.dart';
-
+import 'package:quiz_app_assignment/Domain/authFunctions.dart';
 import '../Components/controllers.dart';
-import '../Components/quiz_text.dart';
 import '../Components/router.dart';
 
 class SignUp extends StatefulWidget {

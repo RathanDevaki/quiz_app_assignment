@@ -5,12 +5,19 @@ PreferredSizeWidget CommonAppBar(String text) {
   return AppBar(
     backgroundColor: ThemeColor,
     elevation: 0,
+    // actions: [
+    //   GestureDetector(
+    //       onTap: () {
+    //         logOut();
+    //       },
+    //       child: Icon(Icons.logout, size: 12)),
+    // ],
     title: Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.w600,
-          color: const Color.fromARGB(255, 255, 255, 255)),
+          color: Color.fromARGB(255, 255, 255, 255)),
     ),
   );
 }

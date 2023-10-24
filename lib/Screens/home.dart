@@ -1,11 +1,7 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../Functions/authFunctions.dart';
-import '../Provider/quiz_provider.dart';
+import '../Domain/authFunctions.dart';
 import 'dashboard.dart';
 import 'sign_in.dart';
 

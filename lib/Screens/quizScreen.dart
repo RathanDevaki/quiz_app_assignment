@@ -1,12 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app_assignment/Components/appbar.dart';
 
 import '../Components/constants.dart';
 import '../Components/router.dart';
-import '../Models/questions.dart';
+import '../Components/questions.dart';
 import '../Provider/quiz_provider.dart';
 
 class QuizScreen1 extends StatefulWidget {
@@ -17,6 +15,12 @@ class QuizScreen1 extends StatefulWidget {
 class _QuizScreen1State extends State<QuizScreen1> {
   int _currentStep = 0;
   MyRouter myRouter = MyRouter();
+
+  @override
+  void initState() {
+    super.initState();
+    quizQuestions.shuffle();
+  }
 
   void _next() {
     setState(() {
@@ -38,7 +42,6 @@ class _QuizScreen1State extends State<QuizScreen1> {
 
   void tapped(int step) {
     setState(() {
-      log(step.toString());
       _currentStep = step;
     });
   }
@@ -66,7 +69,6 @@ class _QuizScreen1State extends State<QuizScreen1> {
       _currentStep < 2 ? setState(() => _currentStep += 1) : null;
     } else if (_currentStep == 2) {
       if (_validateAnswers()) {
-        log('Finish');
         myRouter.pushToResult(context);
       } else {
         showSnackBar(context, 'Please answer all the questions.!');
@@ -106,11 +108,6 @@ class _QuizScreen1State extends State<QuizScreen1> {
                         onChanged: (value) {
                           setState(() {
                             quizProvider.selectedAnswers[i] = value!;
-
-                            // log(questions[i].options.toString());
-                            // log(questions[i].correctAnswer.toString());
-                            // log('SelANs' +
-                            //     quizProvider.selectedAnswers.toString());
                           });
                         },
                       ),

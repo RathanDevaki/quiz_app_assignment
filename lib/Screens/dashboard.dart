@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -50,45 +48,47 @@ class _DashboardState extends State<Dashboard> {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 final snapData = userSnap.data!.docs;
-                log(snapData.length.toString());
-                return ListView.builder(
-                  itemCount: snapData.length,
-                  itemBuilder: (context, index) {
-                    int _obtained = snapData[index]['obtainedScore'];
-                    int _total = snapData[index]['totalScore'];
+                return (snapData.isEmpty)
+                    ? emptyWidget()
+                    : ListView.builder(
+                        itemCount: snapData.length,
+                        itemBuilder: (context, index) {
+                          int _obtained = snapData[index]['obtainedScore'];
+                          int _total = snapData[index]['totalScore'];
 
-                    return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        child: (snapData[index]['uid'] == getUid())
-                            ? Card(
-                                color: Colors.white,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Test $index',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
+                          return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+                              child: (snapData[index]['uid'] == getUid())
+                                  ? Card(
+                                      color: Colors.white,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Test $index',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                            const SizedBox(),
+                                            Text(
+                                              '$_obtained / $_total',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 30),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      const SizedBox(),
-                                      Text(
-                                        '$_obtained / $_total',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 30),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            : null);
-                  },
-                );
+                                    )
+                                  : null);
+                        },
+                      );
               }
             },
           ),
@@ -120,7 +120,7 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-Widget EmptyWidget() {
+Widget emptyWidget() {
   return Center(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,

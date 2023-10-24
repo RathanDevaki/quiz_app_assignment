@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../Models/user_models.dart';
-import '../Models/questions.dart';
 
 signUp(String username, String emailAddress, String password) async {
   try {
@@ -56,8 +55,6 @@ postDetails(String username) async {
     name: username,
   );
 
-  // await firestore.collection("users").doc(user.uid).delete();
-  // .update({'address': 'Mayaa'});
   await firestore.collection("users").doc(user.uid).set(userModel.toMap());
   //firestore.terminate();
 }
@@ -72,25 +69,3 @@ Future<User?> getUserLogin() async {
   User? user = FirebaseAuth.instance.currentUser;
   return user;
 }
-
-// void addQuizToFirestore() async {
-//   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-//   Map<String, dynamic> quizQuestionsMap;
-//   try {
-//     quizQuestionsMap = {};
-
-//     for (int i = 0; i < quizQuestions.length; i++) {
-//       final quizQuestion = quizQuestions[i];
-//       quizQuestionsMap["Question $i"] = {
-//         "question": quizQuestion.question,
-//         "options": quizQuestion.options,
-//         "correctAnswer": quizQuestion.correctAnswer,
-//       };
-//     }
-//     await firestore.collection("quiz").doc().set(quizQuestionsMap);
-
-//     print("Quiz data added to Firestore");
-//   } catch (e) {
-//     print("Error adding quiz data: $e");
-//   }
-// }

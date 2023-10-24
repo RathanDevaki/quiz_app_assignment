@@ -3,13 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app_assignment/Components/appbar.dart';
-import 'package:quiz_app_assignment/Functions/authFunctions.dart';
+import 'package:quiz_app_assignment/Domain/authFunctions.dart';
 import 'package:quiz_app_assignment/Provider/quiz_provider.dart';
 import 'package:lottie/lottie.dart';
 
 import '../Components/constants.dart';
 import '../Components/router.dart';
-import '../Models/questions.dart';
+import '../Components/questions.dart';
 import '../Models/result_model.dart';
 
 class ResultScreen extends StatefulWidget {

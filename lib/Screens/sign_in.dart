@@ -1,7 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_app_assignment/Functions/authFunctions.dart';
+import 'package:quiz_app_assignment/Domain/authFunctions.dart';
 import 'package:quiz_app_assignment/Provider/quiz_provider.dart';
 
 import '../Components/constants.dart';
@@ -26,12 +25,9 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth auth = FirebaseAuth.instance;
-
     MyRouter myRouter = MyRouter();
 
     final quizProvider = Provider.of<QuizProvider>(context, listen: false);
-    //  addQuizToFirestore();
 
     return Scaffold(
       backgroundColor: ThemeColor,
@@ -161,11 +157,6 @@ class _SignInState extends State<SignIn> {
                               child: GestureDetector(
                                 onTap: () {
                                   myRouter.pushToSignUp(context);
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => SignUp()),
-                                  // );
                                 },
                                 child: const Text(
                                   "Dont have an account? Create Now",
@@ -180,14 +171,6 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                   ),
-                  // Container(
-                  //   height: 100,
-                  //   decoration: BoxDecoration(
-                  //       color: ThemeColor,
-                  //       borderRadius: const BorderRadius.only(
-                  //           topLeft: Radius.circular(30),
-                  //           topRight: Radius.circular(30))),
-                  // ),
                 ],
               ),
             ),

@@ -1,4 +1,4 @@
-import 'question_model.dart';
+import '../Models/question_model.dart';
 
 List<QuizQuestion> quizQuestions = [
   QuizQuestion(
